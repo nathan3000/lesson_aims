@@ -1,0 +1,36 @@
+body {
+	font-size: 18px;
+}
+
+.page-header img {
+	margin-bottom: 40px
+}
+
+h1 .bold {
+	font-weight: 700;
+}
+
+h1 .light {
+	font-weight: 300;
+}
+
+h2 {
+	font-weight: 200;
+}
+
+.aim-form label {
+	font-size: 18px;
+}
+
+.aim-form .form-group {
+	padding-right:0;
+}
+
+.aim-form .submit {
+	font-size: 18px;
+}
+
+.this-week {
+	margin-top: 40px;
+}
+
