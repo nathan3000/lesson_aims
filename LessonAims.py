@@ -2,10 +2,11 @@ from flaskext.mysql import MySQL
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 import datetime
+import config
 
 app = Flask(__name__)
 
-app.config.from_object('config.cfg')
+app.config.from_pyfile('config.cfg')
 app.config.from_envvar('LessonAims_Settings')
 
 # mysql
