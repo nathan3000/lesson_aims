@@ -2,7 +2,6 @@ from flaskext.mysql import MySQL
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 import datetime
-import config
 
 app = Flask(__name__)
 
