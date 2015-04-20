@@ -5,6 +5,7 @@ import datetime
 
 app = Flask(__name__)
 
+app.config.from_object('config.cfg')
 app.config.from_envvar('LessonAims_Settings')
 
 # mysql
