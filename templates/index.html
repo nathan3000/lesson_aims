@@ -25,83 +25,72 @@
         <img src="static/images/TreasureSeekers_logo1.jpg" />
         <h1>Lesson Aims</h1>
       </div>
-      <form action="{{ url_for('add') }}" method="POST" class="aim-form"> <div class="row">
-        <div class="col-md-12">
-          {% for message in get_flashed_messages() %}
-            <div class="alert alert-success flash">{{ message }}</div>
-          {% endfor %}
-          {% if error %}
-             <div class="alert alert-warning flash"><strong>Error:</strong> {{ error }}</div>
-          {% endif %}
-        </div> 
-        </div>  
-        <div class="row">    
-          <div class="form-group col-md-2">
-            <label for="groupName">Group Name</label>
-            <select id="groupName" name="groupName" class="form-control input-lg">
-              <option>Diggers</option>
-              <option>Discoverers</option>
-              <option>Explorers</option>
-              <option>Rooted</option>
-            </select>            
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="lessonAim">Lesson Aim</label>
-            <textarea class="form-control input-lg col-md-8" rows="3" id="lessonAim" name="aim" placeholder="Write the lesson aim here.."></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-md-2">
-            <label for="biblePassage">Bible Passage</label>
-            <input type="text" class="form-control input-lg col-md-8" id="biblePassage" placeholder="e.g. John 3:16">
-          </div>
-        </div>
-        <input class="btn btn-default input-lg btn btn-info submit" type="submit" value="Submit">
-      </form>
-      <!--
-      <div class="this-week">
-        <div class="row">
-          <div class="col-md-12">
-            <h2>This Weeks Aims</h2>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Group Name</th>
-                  <th>
-                    Lesson Aim
-                  </th>
-                  <th>
-                   Bible Passage
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th class="text-nowrap" scope="row">Discoverers</th>
-                  <td>This is an aim....</td>
-                  <td>John 3:16</td>
-                </tr>
-                <tr>
-                  <th class="text-nowrap" scope="row">Explorers</th>
-                  <td>This is an aim....</td>
-                  <td>John 3:16</td>
-                </tr>
-                <tr>
-                  <th class="text-nowrap" scope="row">Diggers</th>
-                  <td>This is an aim....</td>
-                  <td>John 3:16</td>
-                </tr>
-                
-              </tbody>              
-            </table>
-          </div> 
-
-        </div>
-
+      <div>
+        <h2>Please use the form to add your lesson aim</h2>
       </div>
-      -->
+      {% from "_formhelpers.html" import render_field %}
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes alert alert-success">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      {% if error %}
+        <p class="alert alert-danger"><strong>Error:</strong> {{ error }}
+      {% endif %}
+      <form action="{{ url_for('add_aim') }}" method="POST" class="aim-form">
+      {{ form.hidden_tag() }}
+        <div class="row group-name">
+          <div class="col-md-4">
+            {{ render_field(form.groupName) }}
+          </div>
+        </div>
+        <div class="row series-name" style="display:none">
+          <div class="col-md-4">
+            {{ render_field(form.seriesName) }}
+          </div>
+        </div>
+        <div class="row new-series-name" style="display:none">
+          <div class="col-md-4">
+            {{ render_field(form.newSeriesName, placeholder="Enter the new series title here..") }}
+          </div>
+        </div>
+        <div class="row bible-passage" style="display:none">
+          <div class="col-md-6">
+            {{ render_field(form.biblePassage, placeholder="e.g. John 3:16") }}
+          </div>
+        </div>
+        <div class="row what-they-learnt" style="display:none">
+          <div class="col-md-6">
+            {{ render_field(form.whatTheyLearnt, placeholder="Write what the children will learn here..", rows="3") }}
+          </div>
+        </div>
+        <div class="row lesson-aim" style="display:none">
+          <div class="col-md-6">
+            {{ render_field(form.lessonAim, placeholder="Write the lesson aim here..", rows="3") }}
+          </div>
+        </div>
+        <div class="row tip1" style="display:none">
+          <div class="col-md-6">
+            {{ render_field(form.tip1) }}
+          </div>
+        </div>
+        <div class="row tip2" style="display:none">
+          <div class="col-md-6">
+            {{ render_field(form.tip2) }}
+          </div>
+        </div>
+        <div class="row memory-verse" style="display:none">
+          <div class="col-md-6">
+            {{ render_field(form.memoryVerse, class_="form-control input-lg") }}
+          </div>
+        </div>
+    
+        <input type="submit" value="Submit" class="btn btn-default input-lg btn btn-info submit" /></p>
+      </form>
     </div>
     
 
@@ -109,5 +98,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/custom.js"></script>
   </body>
 </html>

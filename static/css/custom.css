@@ -16,7 +16,9 @@ h1 .light {
 
 h2 {
 	font-weight: 200;
+	margin-bottom: 20px;
 }
+
 
 .aim-form label {
 	font-size: 18px;
@@ -30,7 +32,13 @@ h2 {
 	font-size: 18px;
 }
 
-.this-week {
-	margin-top: 40px;
+.new-series-name .form-group {
+	padding: 10px;
+	background-color: #eaeaea;
+	border-radius: 6px;
+}
+
+.flashes {
+	list-style: none
 }
 
