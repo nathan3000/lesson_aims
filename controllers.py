@@ -45,15 +45,13 @@ def add_aim():
 				tip2=request.form['tip2'],
 				scheduled_date=scheduledDate
 			)
-
-			print aim
 			
 			db.session.add(aim)
 			db.session.commit()
 
 			flash('Success! Your aim has been submitted :)')
 
-			redirect(url_for('show_aims'))
+			return redirect(url_for('show_aims'))
 
 		except Exception as err:
 			error = "Something went wrong {}".format(err)
@@ -68,7 +66,7 @@ def add_aim():
 #def delete():
 
 
-@app.route('/aims/', methods=['GET'])
+@app.route('/aims', methods=['GET'])
 def show_aims():
 	aims = Aim.query.filter_by(scheduled_date=next_sunday())
 	return render_template('show.html', aims=aims)
