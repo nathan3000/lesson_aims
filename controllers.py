@@ -1,4 +1,4 @@
-from LessonAims import app
+from LessonAims import app, db
 from flask import request, session, g, redirect, url_for, abort, render_template, flash
 import datetime
 from forms import AimsForm
