@@ -1,6 +1,5 @@
 #!flask/bin/python
-from app import db
-from models import Aim, Group, Series
+from models import db, Aim, Group, Series
 
 db.drop_all()
 db.create_all()
