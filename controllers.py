@@ -53,7 +53,7 @@ def add_aim():
 
 			flash('Success! Your aim has been submitted :)')
 
-			return redirect('/aims')
+			redirect(url_for('show_aims'))
 
 		except Exception as err:
 			error = "Something went wrong {}".format(err)
