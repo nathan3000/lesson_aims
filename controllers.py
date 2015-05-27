@@ -1,5 +1,5 @@
 from LessonAims import app, db
-from flask import request, session, g, redirect, url_for, abort, render_template, flash
+from flask import request, session, g, redirect, url_for, abort, render_template, flash, Markup
 import datetime
 from forms import AimsForm
 from models import Aim, Series, Group
@@ -49,7 +49,7 @@ def add_aim():
 			db.session.add(aim)
 			db.session.commit()
 
-			flash('Success! Your aim has been submitted :)')
+			flash(Markup('<strong>Success!</strong> Your aim has been submitted and is scheduled to be sent to parents on: <strong>%s</strong>' % scheduledDate.strftime("%-d %A %Y")))
 
 			return redirect(url_for('show_aims'))
 
