@@ -5,13 +5,14 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 def gethtmlContent(aims):
+	segment = []
+	segment.append("<p>Dear parent <br/><br/>")
+	segment.append("It is our joy to be able to partner with you in teaching your child(ren) great spiritual truths from God's Word. In order to help you reinforce this week's teaching below you will find details of what the children learnt and a few questions or activities that you may find helpful:<br/><br/>")
+	
 	for aim in aims:
-		segment = []
-		segment.append("<p>Dear parent <br/><br/>")
-		segment.append("It is our joy to be able to partner with you in teaching your child(ren) great spiritual truths from God's Word. In order to help you reinforce this week's teaching below you will find details of what the children learnt and a few questions or activities that you may find helpful:<br/><br/>")
-		segment.append("<strong>%s %s</strong><br/>" % (aim.group.group_name, aim.group.school_year))
+		segment.append("<strong>%s (%s)</strong><br/>" % (aim.group.group_name, aim.group.school_year))
 		if aim.series:
-			segment.append("%s Week<br/>" % aim.series.series_name)
+			segment.append("Series: %s<br/>" % aim.series.series_name)
 		if aim.bible_passage:
 			segment.append("Bible Passage: %s <br />" % aim.bible_passage)
 		if aim.what_they_learnt:
@@ -36,17 +37,17 @@ def gethtmlContent(aims):
 			segment.append("</ol>")
 			segment.append("Our memory verse for this teaching series is: %s" % aim.series.memory_verse)
 		
+	segment.append("</p><p>Any questions please do feel free to contact me.</p>")
+	segment.append("<p>Every blessing</p>")
+	segment.append("<p>Amanda</p>")
 
 	return ''.join(segment)
 
 
 def mailer(aims, to):
-
-	print "Mailer:"
-
 	msg = MIMEMultipart('alternative')
 
-	msg['Subject'] = "Hello from Treasure Seekers"
+	msg['Subject'] = "Today in Treasure Seekers"
 	msg['From']    = "Nathan Fisher <nathan@christchurchsouthampton.org.uk>" # Your from name and email address
 	msg['To']      = to['email']
 

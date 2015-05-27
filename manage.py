@@ -26,6 +26,7 @@ def seed():
 def scheduler():
 	#aims = Aim.query.filter_by(scheduled_date=datetime.date.today())
 	aims = Aim.query.all()
+	print aims
 	contacts = elvanto.get_contacts('Treasure Seeker')
 	for contact in contacts:
 		mailer.mailer(aims, contact)

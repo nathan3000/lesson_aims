@@ -49,7 +49,7 @@ def add_aim():
 			db.session.add(aim)
 			db.session.commit()
 
-			flash(Markup('<strong>Success!</strong> Your aim has been submitted and is scheduled to be sent to parents on: <strong>%s</strong>' % scheduledDate.strftime("%-d %A %Y")))
+			flash(Markup('<strong>Success!</strong> Your aim has been submitted and is scheduled to be sent to parents on: <strong>%s</strong>' % scheduledDate.strftime("%A %-d %B %Y")))
 
 			return redirect(url_for('show_aims'))
 
