@@ -7,9 +7,9 @@ class Aim(db.Model):
 	__tablename__ = 'aims'
 	id = db.Column(db.Integer, primary_key=True)
 	group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
-	group = relationship('Group', backref=backref('aims', uselist=False))
+	group = db.relationship('Group', backref=backref('aim', uselist=False))
 	series_id = db.Column(db.Integer, db.ForeignKey('series.id'))
-	series = relationship('Series', backref=backref('series', uselist=False))
+	series = db.relationship('Series', backref=backref('aim', uselist=False))
 	what_they_learnt = db.Column(db.String(250))
 	lesson_aim = db.Column(db.String(250))
 	bible_passage = db.Column(db.String(100))
