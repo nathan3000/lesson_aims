@@ -28,7 +28,8 @@ def add_aim():
 			series = None
 
 			if seriesId == '0':
-				series = db.session.add(Series(request.form['newSeriesName']))
+				series = Series(request.form['newSeriesName'])
+				db.session.add(series)
 				db.session.commit()
 			else:
 				series = Series.query.get(seriesId)

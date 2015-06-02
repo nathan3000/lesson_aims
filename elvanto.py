@@ -11,7 +11,7 @@ def get_contacts(group_name):
 
 	r = requests.post(elvanto_url, data=json.dumps(data), auth=('diybrM8IDRsafNybg2Fixj9M7agNY7H1', 'x'), headers=headers).json()
 
-	contacts = []
+	contacts = {}
 
 	for i in r['groups']['group']:
 		if i['name'] == group_name + ' Parents':			
@@ -19,8 +19,30 @@ def get_contacts(group_name):
 				tuple = {}
 				tuple['firstname'] = y['firstname']
 				tuple['email'] = y['email']
-				contacts.append(tuple)
+				tuple['group'] = [group_name]
+				contacts[y['id']] = tuple
 				
 	return contacts
+
+def get_parents_list(groups):
+	parents = {}
+
+	for group in groups:
+		parents = update_parent_list(group, parents)
+
+	return parents
+
+def update_parent_list(group, parents):
+
+	contacts = get_contacts(group)
+
+	for uid,contact in contacts.items():
+		if uid in parents:
+			parents[uid]['group'].extend(contact['group'])
+		else:
+			parents[uid] = contact
+
+	return parents
+
 
 
