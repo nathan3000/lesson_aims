@@ -26,10 +26,12 @@ def seed():
 def scheduler():
 	#aims = Aim.query.filter_by(scheduled_date=datetime.date.today())
 	aims = Aim.query.all()
-	print aims
-	contacts = elvanto.get_contacts('Treasure Seeker')
-	for contact in contacts:
-		mailer.mailer(aims, contact)
+	parents = {}
+	parents = elvanto.get_parents_list(['Diggers', 'Discoverers', 'Explorers'])
+
+	for uid,parent in parents.items():
+	#	print parent['group']		
+		mailer.mailer(aims, parent)
 
 
 if __name__ == "__main__":
