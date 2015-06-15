@@ -47,8 +47,9 @@ class Series(db.Model):
 	series_name = db.Column(db.String(80), unique=True)
 	memory_verse = db.Column(db.String(80))
 
-	def __init__(self, series_name):
+	def __init__(self, series_name, memory_verse):
 		self.series_name = series_name
+		self.memory_verse = memory_verse
 
 	def __repr__(self):
 		return self.series_name

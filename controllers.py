@@ -28,7 +28,7 @@ def add_aim():
 			series = None
 
 			if seriesId == '0':
-				series = Series(request.form['newSeriesName'])
+				series = Series(request.form['newSeriesName'], request.form['memoryVerse'])
 				db.session.add(series)
 				db.session.commit()
 			else:
