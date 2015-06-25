@@ -75,6 +75,7 @@ def mailer(aims, parent):
 
 	print "Sending mail..to " + parent['email']
 
-	s.sendmail(msg['From'], msg['To'], msg.as_string())
+	if msg['To']:
+		s.sendmail(msg['From'], msg['To'], msg.as_string())
 
 	s.quit()
