@@ -1,8 +1,8 @@
 from LessonAims import app, db
 from flask import request, session, g, redirect, url_for, abort, render_template, flash, Markup
-import datetime
 from forms import AimsForm
 from models import Aim, Series, Group
+import helpers
 
 
 @app.route('/', methods=('GET', 'POST'))
@@ -34,7 +34,7 @@ def add_aim():
 			else:
 				series = Series.query.get(seriesId)
 
-			scheduledDate = next_sunday()
+			scheduledDate = helpers.next_sunday()
 
 			aim = Aim(
 				group, 
@@ -69,14 +69,9 @@ def add_aim():
 
 @app.route('/aims', methods=['GET'])
 def show_aims():
-	aims = Aim.query.filter_by(scheduled_date=next_sunday())
+	aims = Aim.query.filter_by(scheduled_date=helpers.next_sunday())
 	return render_template('show.html', aims=aims)
 
-
-def next_sunday():
-	today = datetime.date.today()
-	return today + datetime.timedelta( (6-today.weekday()) % 7 )
-	
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
