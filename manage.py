@@ -1,5 +1,7 @@
 from flask import Flask
+from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.script import Manager, Command, Option
+from flask.ext.migrate import Migrate, MigrateCommand
 from models import db, Aim, Series, Group
 
 import mailer
@@ -11,6 +13,7 @@ app = Flask(__name__)
 app.config.from_pyfile('config.cfg')
 
 db.init_app(app)
+migrate = Migrate(app, db)
 
 manager = Manager(app)
 
@@ -56,4 +59,5 @@ class Scheduler(Command):
 if __name__ == "__main__":
 	manager.add_command('seed', Seed())
 	manager.add_command('scheduler', Scheduler())
+	manager.add_command('db', MigrateCommand)
 	manager.run()
