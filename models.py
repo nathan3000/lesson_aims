@@ -45,7 +45,7 @@ class Group(db.Model):
 class Series(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	series_name = db.Column(db.String(80), unique=True)
-	memory_verse = db.Column(db.String(80))
+	memory_verse = db.Column(db.String(250))
 
 	def __init__(self, series_name, memory_verse):
 		self.series_name = series_name
